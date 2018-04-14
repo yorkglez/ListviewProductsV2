@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ListView Productos</string>
+    <string name="title">Titulo</string>
 </resources>
