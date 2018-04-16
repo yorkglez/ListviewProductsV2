@@ -3,11 +3,15 @@ package com.tecmm.tala.listviewproductos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Addproduct extends AppCompatActivity {
 
@@ -28,6 +32,7 @@ public class Addproduct extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Add();
+                ShowTSuccess();
             }
         });
     }
@@ -38,4 +43,16 @@ public class Addproduct extends AppCompatActivity {
         setResult(RESULT_OK,i);
         finish();
     }
+    public void ShowTSuccess(){
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.toast_lay, (ViewGroup) findViewById(R.id.toast_root));
+        TextView text = (TextView) view.findViewById(R.id.toast_text);
+        text.setText("Producto "+Txtname.getText().toString()+" agregado correctamente");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0,0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(view);
+        toast.show();
+    }
+
 }
