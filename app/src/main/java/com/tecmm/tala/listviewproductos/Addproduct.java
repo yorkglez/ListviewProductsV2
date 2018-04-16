@@ -27,12 +27,15 @@ public class Addproduct extends AppCompatActivity {
         Btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Main();
+                Add();
             }
         });
     }
-    public void Main(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    public void Add(){
+        Intent i = new Intent();
+        i.putExtra("Name",Txtname.getText().toString());
+        i.putExtra("Category",SpinnerProduct.getSelectedItem().toString());
+        setResult(RESULT_OK,i);
+        finish();
     }
 }

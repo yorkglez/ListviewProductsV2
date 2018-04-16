@@ -12,32 +12,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView txt;
     private ListView list;
     private FloatingActionButton Btnadd;
-    private String productos[] = {"Computadora", "Mouse", "Dulces", "Hojas",
-            "Lapices", "Lentes","Reloj", "Cuchara", "Celular", "Mesa", "Refrigerador",
-            "Horno", "Audifonos"};
-    private String categoria[] =
-            {"Electronica","Electronica","Dulceria","Papeleria","Papeleria","Moda","Perfumeria",
-                    "Hogar", "Electronicos", "Hogar", "Electrodomesticos", "Electrodomesticos",
-                    "Electronica"};
+    private List<String> lProducts = new ArrayList<>();
+    private List<String> lCategories = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txt = (TextView) findViewById(R.id.txt);
         list = (ListView) findViewById(R.id.list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,productos);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                txt.setText("Categoria elegido: " + categoria[i]);
-            }
-        });
         Btnadd = (FloatingActionButton) findViewById(R.id.Btnadd);
         Btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +34,29 @@ public class MainActivity extends AppCompatActivity {
                 OpenAddproduct();
             }
         });
+        UpdateTable();
+    }
+    private void UpdateTable(){
+        String products[] = new String[lProducts.size()];
+        lProducts.toArray(products);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,products);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                txt.setText("Categoria elegida: " + lCategories.get(position));
+            }
+        });
+    }
+    public  void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode,data);
+        lProducts.add(data.getStringExtra("Name"));
+        lCategories.add(data.getStringExtra("Category"));
+        UpdateTable();
+        System.out.println("On Activity Result!!!");
     }
     public void OpenAddproduct(){
         Intent intent = new Intent(this, Addproduct.class);
-        startActivity(intent);
-
+        startActivityForResult(intent,123);
     }
 }
