@@ -50,7 +50,7 @@ public class Addproduct extends AppCompatActivity {
         text.setText("Producto "+Txtname.getText().toString()+" agregado correctamente");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0,0);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
         toast.show();
     }
