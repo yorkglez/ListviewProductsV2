@@ -45,7 +45,7 @@ public class Addproduct extends AppCompatActivity {
     }
     public void ShowTSuccess(){
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.toast_lay, (ViewGroup) findViewById(R.id.toast_root));
+        View view = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_root));
         TextView text = (TextView) view.findViewById(R.id.toast_text);
         text.setText("Producto "+Txtname.getText().toString()+" agregado correctamente");
         Toast toast = new Toast(getApplicationContext());
