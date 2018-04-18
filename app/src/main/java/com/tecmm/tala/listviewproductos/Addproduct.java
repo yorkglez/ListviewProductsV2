@@ -57,7 +57,7 @@ public class Addproduct extends AppCompatActivity {
         TextView text = (TextView) view.findViewById(R.id.toast_text);
         text.setText("Producto "+Txtname.getText().toString()+" agregado correctamente");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0,0);
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0,0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
         toast.show();
