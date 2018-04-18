@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
         UpdateTable();
     }
+    /*-- Update ListView--*/
     private void UpdateTable(){
         String products[] = new String[lProducts.size()];
         lProducts.toArray(products);
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    /*-- --*/
     public  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
         lProducts.add(data.getStringExtra("Name"));
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Addproduct.class);
         startActivityForResult(intent,123);
     }
+    /*--Menu--*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -96,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 .getMenuInfo();
         switch (item.getItemId()){
             case R.id.item_Update:
-                System.out.println("U");
+                Intent i = new Intent(this,Addproduct.class);
+                i.putExtra("Name", list.getItemAtPosition(info.position).toString());
+                i.putExtra("Category",lCategories.get(info.position));
+                startActivityForResult(i,1);
                 return  true;
             case R.id.item_Delete:
                 lProducts.remove(info.position);
@@ -105,6 +111,13 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+    public void EditData(){
+        Intent i = new Intent();
+       // i.putExtra("Name",Txtname.getText().toString());
+     //   i.putExtra("Category",SpinnerProduct.getSelectedItem().toString());
+        setResult(RESULT_OK,i);
+        finish();
     }
 }
 

@@ -35,6 +35,14 @@ public class Addproduct extends AppCompatActivity {
                 ShowTSuccess();
             }
         });
+
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+      //  super.onActivityResult(requestCode, resultCode,data);
+     //   Txtname.setText(data.getStringExtra("Name"));
+        System.out.println("Result add");
     }
     public void Add(){
         Intent i = new Intent();
