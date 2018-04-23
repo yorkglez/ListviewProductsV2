@@ -64,10 +64,12 @@ public class MainActivity extends AppCompatActivity {
     /*-- --*/
     public  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
+        if (requestCode == 1) {
+            //-list.getItemAtPosition(data.getStringExtra("position"));
+        }
         lProducts.add(data.getStringExtra("Name"));
         lCategories.add(data.getStringExtra("Category"));
         UpdateTable();
-        System.out.println("On Activity Result!!!");
     }
     public void OpenAddproduct(){
         Intent intent = new Intent(this, Addproduct.class);
@@ -101,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_Update:
                 startActivity(new Intent(this,Addproduct.class)
                         .putExtra("Name", list.getItemAtPosition(info.position).toString())
-                        .putExtra("Category",lCategories.get(info.position)));
+                        .putExtra("Category",lCategories.get(info.position))
+                        .putExtra("lPosition",info.position));
                 return  true;
             case R.id.item_Delete:
                 lProducts.remove(info.position);

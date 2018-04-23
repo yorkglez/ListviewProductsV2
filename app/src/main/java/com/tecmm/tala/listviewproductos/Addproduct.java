@@ -59,6 +59,13 @@ public class Addproduct extends AppCompatActivity {
         setResult(RESULT_OK,i);
         finish();
     }
+    public void Update(){
+        Intent i = new Intent();
+        i.putExtra("Name",Txtname.getText().toString());
+        i.putExtra("Category",SpinnerCategories.getSelectedItem().toString());
+        setResult(1,i);
+        finish();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
