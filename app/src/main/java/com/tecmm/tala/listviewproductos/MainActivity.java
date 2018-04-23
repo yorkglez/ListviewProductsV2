@@ -99,10 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 .getMenuInfo();
         switch (item.getItemId()){
             case R.id.item_Update:
-                Intent i = new Intent(this,Addproduct.class);
-                i.putExtra("Name", list.getItemAtPosition(info.position).toString());
-                i.putExtra("Category",lCategories.get(info.position));
-                startActivityForResult(i,1);
+                startActivity(new Intent(this,Addproduct.class)
+                        .putExtra("Name", list.getItemAtPosition(info.position).toString())
+                        .putExtra("Category",lCategories.get(info.position)));
                 return  true;
             case R.id.item_Delete:
                 lProducts.remove(info.position);
