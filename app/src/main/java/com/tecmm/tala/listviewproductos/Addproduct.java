@@ -47,7 +47,6 @@ public class Addproduct extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Add();
-                ShowTSuccess();
             }
         });
     }
@@ -68,16 +67,5 @@ public class Addproduct extends AppCompatActivity {
      //   System.out.println("Result add");
     }
 
-    public void ShowTSuccess(){
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.toast_success_layout, (ViewGroup) findViewById(R.id.toast_root));
-        TextView text = (TextView) view.findViewById(R.id.toast_text);
-        text.setText("Producto "+Txtname.getText().toString()+" agregado correctamente");
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0,0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(view);
-        toast.show();
-    }
 
 }

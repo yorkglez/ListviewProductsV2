@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 0){
             lProducts.add(data.getStringExtra("Name"));
             lCategories.add(data.getStringExtra("Category"));
+            ShowTSuccess(data.getStringExtra("Name"));
         }
         UpdateTable();
     }
@@ -134,6 +135,17 @@ public class MainActivity extends AppCompatActivity {
         View view = inflater.inflate(R.layout.toast_info_layout, (ViewGroup) findViewById(R.id.toast_root));
         TextView text = (TextView) view.findViewById(R.id.toast_textinfo);
         text.setText(info);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0,0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(view);
+        toast.show();
+    }
+    public void ShowTSuccess(String name){
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.toast_success_layout, (ViewGroup) findViewById(R.id.toast_root));
+        TextView text = (TextView) view.findViewById(R.id.toast_text);
+        text.setText("Producto "+name+" agregado correctamente");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0,0);
         toast.setDuration(Toast.LENGTH_SHORT);
