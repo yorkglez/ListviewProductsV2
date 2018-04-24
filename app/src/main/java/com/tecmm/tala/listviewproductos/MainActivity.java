@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Addproduct.class);
         startActivityForResult(intent,0);
     }
+
     /*--Menu--*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
         }
     }
+
     /*--Contextmenu--*/
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu,v, menuInfo);
@@ -103,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.popup_menu, menu);
 
     }
+    //Options contex menu
     public boolean onContextItemSelected(MenuItem item){
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
                 .getMenuInfo();
         switch (item.getItemId()){
             case R.id.item_Update:
-                System.out.println("position!!!"+info.position);
                 startActivityForResult(new Intent(this,Addproduct.class)
                         .putExtra("Name", list.getItemAtPosition(info.position).toString())
                         .putExtra("Category",lCategories.get(info.position))
@@ -123,13 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 return super.onContextItemSelected(item);
         }
     }
-    public void EditData(){
-        Intent i = new Intent();
-       // i.putExtra("Name",Txtname.getText().toString());
-     //   i.putExtra("Category",SpinnerProduct.getSelectedItem().toString());
-        setResult(RESULT_OK,i);
-        finish();
-    }
+
+    /*--Toast--*/
     public void ShowInfo(String info){
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.toast_info_layout, (ViewGroup) findViewById(R.id.toast_root));
