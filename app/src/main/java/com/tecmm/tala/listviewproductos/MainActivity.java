@@ -64,16 +64,22 @@ public class MainActivity extends AppCompatActivity {
     /*-- --*/
     public  void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode,data);
+        System.out.println("Request code"+requestCode);
         if (requestCode == 1) {
-            //-list.getItemAtPosition(data.getStringExtra("position"));
+            //-list.getItemAtPosition(data.getStringExtra("position"));.
+            lProducts.set(data.getIntExtra("cPosition",0),data.getStringExtra("Name"));
+            lCategories.set(data.getIntExtra("cPosition",0),data.getStringExtra("Category"));
+            ShowInfo("Producto Actualizado");
         }
-        lProducts.add(data.getStringExtra("Name"));
-        lCategories.add(data.getStringExtra("Category"));
+        if(requestCode == 0){
+            lProducts.add(data.getStringExtra("Name"));
+            lCategories.add(data.getStringExtra("Category"));
+        }
         UpdateTable();
     }
     public void OpenAddproduct(){
         Intent intent = new Intent(this, Addproduct.class);
-        startActivityForResult(intent,123);
+        startActivityForResult(intent,0);
     }
     /*--Menu--*/
     @Override
@@ -101,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
                 .getMenuInfo();
         switch (item.getItemId()){
             case R.id.item_Update:
-                startActivity(new Intent(this,Addproduct.class)
+                System.out.println("position!!!"+info.position);
+                startActivityForResult(new Intent(this,Addproduct.class)
                         .putExtra("Name", list.getItemAtPosition(info.position).toString())
                         .putExtra("Category",lCategories.get(info.position))
-                        .putExtra("lPosition",info.position));
+                        .putExtra("cPosition",info.position),1);
                 return  true;
             case R.id.item_Delete:
                 lProducts.remove(info.position);
