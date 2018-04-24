@@ -22,7 +22,7 @@ public class Addproduct extends AppCompatActivity {
     private Spinner SpinnerCategories;
     private TextView Txtname;
     private Button Btnsave;
-    private int pos = 0, Result =0;
+    private int pos = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +32,17 @@ public class Addproduct extends AppCompatActivity {
         String Options[] = {"Bebe","Auto","Electronicos","Peliculas","Ropa","Zapatos","Deportes","Hogar","Industria","Juegos","Libros","Mascotas","Musica"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, Options);
         SpinnerCategories.setAdapter(adapter );
+        Btnsave = (Button) findViewById(R.id.Btnsave);
         Intent intent = getIntent();
         if ( intent.getStringExtra("Name")!= null){
-          //  Btnsave.add
+            Btnsave.setText("Update");
             Txtname.setText(intent.getStringExtra("Name"));
             out.println("ITEM"+intent.getStringExtra("Category"));
             out.println("NAme"+intent.getStringExtra("Name"));
             SpinnerCategories.setSelection( adapter.getPosition(intent.getStringExtra("Category")));
             pos = intent.getIntExtra("cPosition",0);
-            Result = 1;
         }
-        Btnsave = (Button) findViewById(R.id.Btnsave);
+
         Btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
